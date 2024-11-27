@@ -241,6 +241,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66fb660096ccf16469ffc51287585412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentRoom: {fileID: 21300000, guid: 690b756d669ac6249a60144ae0f66519, type: 3}
+  BossRoom: {fileID: 21300000, guid: 5fb985cc1d9500448bab1f5e63de7d3e, type: 3}
+  ShopRoom: {fileID: 21300000, guid: fad75b3fc6a9d1247b88f583c8c9f318, type: 3}
+  TreasureRoom: {fileID: 21300000, guid: f2f90ddd9387693459d60a873e14145d, type: 3}
+  DefaultRoom: {fileID: 21300000, guid: 025d017af4b172d469262adfba979f4c, type: 3}
+  UnexploredRoom: {fileID: 21300000, guid: 9a304cd19ae6e1e41946b137907905d8, type: 3}
+  mapSize: 8
+  treasureCount: 0
+  bossCount: 0
+  shopCount: 0
 --- !u!114 &696851309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,12 +301,12 @@ GameObject:
   - component: {fileID: 714203433}
   - component: {fileID: 714203432}
   m_Layer: 5
-  m_Name: Image
+  m_Name: MapTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &714203431
 RectTransform:
   m_ObjectHideFlags: 0
