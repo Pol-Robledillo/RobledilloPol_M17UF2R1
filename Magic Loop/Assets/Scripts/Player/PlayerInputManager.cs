@@ -20,8 +20,16 @@ public class PlayerInputManager : MonoBehaviour, Inputs.ICharacterActions
     }
     private void Update()
     {
-        anim.SetFloat("x", direction.x);
-        anim.SetFloat("y", direction.y);
+        if (direction.x != 0 || direction.y != 0)
+        {
+            anim.SetFloat("x", direction.x);
+            anim.SetFloat("y", direction.y);
+            anim.SetBool("Walking", true);
+        }
+        else
+        {
+            anim.SetBool("Walking", false);
+        }
     }
 
     private void FixedUpdate()

@@ -11,6 +11,7 @@ public class Room : MonoBehaviour
         if (RoomController.instance == null)
         {
             Debug.Log("RoomController is null");
+            return;
         }
 
         RoomController.instance.RegisterRoom(this);
@@ -23,5 +24,12 @@ public class Room : MonoBehaviour
     public Vector3 GetRoomCenter()
     {
         return new Vector3(xPosition * width, yPosition * height);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            RoomController.instance.OnPlayerEnterRoom(this);
+        }
     }
 }

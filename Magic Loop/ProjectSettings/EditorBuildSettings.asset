@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/DungeonRooms/RoomGenerationStartRoom.unity
+    path: Assets/Scenes/DungeonRooms/StartRoom.unity
     guid: 733fa5b72ac2b36408ce803e9fc0e52c
   - enabled: 1
-    path: Assets/Scenes/DungeonRooms/RoomGenerationEmptyRoom.unity
+    path: Assets/Scenes/DungeonRooms/EmptyRoom.unity
     guid: e4ff8f8d4e6d21e49813333a3a41b3cb
   - enabled: 1
-    path: Assets/Scenes/DungeonRooms/RoomGenerationEndRoom.unity
+    path: Assets/Scenes/DungeonRooms/EndRoom.unity
     guid: 0bdafcbab74366a4e8f02f3a7cf4ff77
   m_configObjects: {}
