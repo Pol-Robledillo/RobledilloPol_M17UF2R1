@@ -5,6 +5,8 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     public int width, height, xPosition, yPosition;
+    public Door leftDoor, rightDoor, topDoor, bottomDoor;
+    public List<Door> doors = new List<Door>();
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +16,78 @@ public class Room : MonoBehaviour
             return;
         }
 
+        Door[] ds = GetComponentsInChildren<Door>();
+
+        foreach (Door d in ds)
+        {
+            doors.Add(d);
+            switch (d.doorType)
+            {
+                case Door.DoorType.left:
+                    leftDoor = d;
+                    break;
+                case Door.DoorType.right:
+                    rightDoor = d;
+                    break;
+                case Door.DoorType.top:
+                    topDoor = d;
+                    break;
+                case Door.DoorType.bottom:
+                    bottomDoor = d;
+                    break;
+            }
+        }
+
         RoomController.instance.RegisterRoom(this);
+    }
+    public void RemoveUnconnectedDoors()
+    {
+        foreach (Door door in doors)
+        {
+            switch (door.doorType)
+            {
+                case Door.DoorType.left:
+                    break;
+                case Door.DoorType.right:
+                    break;
+                case Door.DoorType.top:
+                    break;
+                case Door.DoorType.bottom:
+                    break;
+            }
+        }
+    }
+    public Room GetRight()
+    {
+        if(RoomController.instance.DoesRoomExist(xPosition + 1, yPosition))
+        {
+            return RoomController.instance.FindRoom(xPosition + 1, yPosition);
+        }
+        return null;
+    }
+    public Room GetLeft()
+    {
+        if (RoomController.instance.DoesRoomExist(xPosition - 1, yPosition))
+        {
+            return RoomController.instance.FindRoom(xPosition - 1, yPosition);
+        }
+        return null;
+    }
+    public Room GetTop()
+    {
+        if (RoomController.instance.DoesRoomExist(xPosition, yPosition + 1))
+        {
+            return RoomController.instance.FindRoom(xPosition, yPosition + 1);
+        }
+        return null;
+    }
+    public Room GetBottom()
+    {
+        if (RoomController.instance.DoesRoomExist(xPosition, yPosition - 1))
+        {
+            return RoomController.instance.FindRoom(xPosition, yPosition - 1);
+        }
+        return null;
     }
     private void OnDrawGizmos()
     {
