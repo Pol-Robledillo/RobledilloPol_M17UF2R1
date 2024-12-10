@@ -12,4 +12,5 @@ public class Door : MonoBehaviour
         bottom
     }
     public DoorType doorType;
+    public GameObject bridge;
 }

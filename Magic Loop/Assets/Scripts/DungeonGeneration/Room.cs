@@ -7,7 +7,11 @@ public class Room : MonoBehaviour
     public int width, height, xPosition, yPosition;
     public Door leftDoor, rightDoor, topDoor, bottomDoor;
     public List<Door> doors = new List<Door>();
-    // Start is called before the first frame update
+    public Room(int x, int y)
+    {
+        xPosition = x;
+        yPosition = y;
+    }
     void Start()
     {
         if (RoomController.instance == null)
@@ -23,11 +27,11 @@ public class Room : MonoBehaviour
             doors.Add(d);
             switch (d.doorType)
             {
-                case Door.DoorType.left:
-                    leftDoor = d;
-                    break;
                 case Door.DoorType.right:
                     rightDoor = d;
+                    break;
+                case Door.DoorType.left:
+                    leftDoor = d;
                     break;
                 case Door.DoorType.top:
                     topDoor = d;
@@ -46,13 +50,53 @@ public class Room : MonoBehaviour
         {
             switch (door.doorType)
             {
-                case Door.DoorType.left:
-                    break;
                 case Door.DoorType.right:
+                    if (GetRight() == null)
+                    {
+                        door.gameObject.SetActive(true);
+                        door.bridge.SetActive(false);
+                    }
+                    else
+                    {
+                        door.gameObject.SetActive(false);
+                        door.bridge.SetActive(true);
+                    }
+                    break;
+                case Door.DoorType.left:
+                    if (GetLeft() == null)
+                    {
+                        door.gameObject.SetActive(true);
+                        door.bridge.SetActive(false);
+                    }
+                    else
+                    {
+                        door.gameObject.SetActive(false);
+                        door.bridge.SetActive(true);
+                    }
                     break;
                 case Door.DoorType.top:
+                    if (GetTop() == null)
+                    {
+                        door.gameObject.SetActive(true);
+                        door.bridge.SetActive(false);
+                    }
+                    else
+                    {
+                        door.gameObject.SetActive(false);
+                        door.bridge.SetActive(true);
+                    }
                     break;
                 case Door.DoorType.bottom:
+                    if (GetBottom() == null)
+                    {
+                        door.gameObject.SetActive(true);
+                        door.bridge.SetActive(false);
+                    }
+                    else
+                    {
+                        door.gameObject.SetActive(false);
+                        door.bridge.SetActive(true);
+                    }
                     break;
             }
         }
