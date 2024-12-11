@@ -16,7 +16,7 @@ public class DungeonGenerator : MonoBehaviour
         RoomController.instance.LoadRoom("StartRoom", 0, 0);
         foreach (Vector2Int roomLocation in rooms)
         {
-            RoomController.instance.LoadRoom("EmptyRoom", roomLocation.x, roomLocation.y);
+            RoomController.instance.LoadRoom(RoomController.instance.GetRandomRoomName(), roomLocation.x, roomLocation.y);
         }
     }
 }

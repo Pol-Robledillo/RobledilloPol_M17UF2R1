@@ -17,25 +17,26 @@ public class GridController : MonoBehaviour
     public void Awake()
     {
         room = GetComponentInParent<Room>();
-        grid.columns = room.width - 3;
-        grid.rows = room.height - 3;
+        grid.columns = room.width - 2;
+        grid.rows = room.height - 4;
         GenerateGrid();
     }
     public void GenerateGrid()
     {
-        grid.verticalOffset += room.GetComponent<Transform>().localPosition.y;
-        grid.horizontalOffset += room.GetComponent<Transform>().localPosition.x;
+        grid.verticalOffset += room.transform.localPosition.y;
+        grid.horizontalOffset += room.transform.localPosition.x;
 
         for (int y = 0; y < grid.rows; y++)
         {
             for (int x = 0; x < grid.columns; x++)
             {
                 GameObject go = Instantiate(gridTile, transform);
-                go.GetComponent<Transform>().position = new Vector2(x - (grid.columns - grid.horizontalOffset), y - (grid.rows - grid.horizontalOffset));
+                go.GetComponent<Transform>().position = new Vector2(x - (grid.columns - grid.verticalOffset), y - (grid.rows - grid.horizontalOffset));
                 go.name = "X: " + x + ", Y: " + y;
                 availablePoints.Add(go.transform.position);
-
             }
         }
+
+        GetComponentInParent<ObjectRoomSpawner>().InitialiseObjectSpawning();
     }
 }
