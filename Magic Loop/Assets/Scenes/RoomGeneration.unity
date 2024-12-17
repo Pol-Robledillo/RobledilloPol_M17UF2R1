@@ -239,7 +239,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1182328327}
   - component: {fileID: 1182328326}
-  - component: {fileID: 1182328325}
   - component: {fileID: 1182328324}
   - component: {fileID: 1182328323}
   - component: {fileID: 1182328322}
@@ -375,19 +374,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1182328325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1182328321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7beed83415b6faf40bdb34ec90d68560, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3.5
 --- !u!95 &1182328326
 Animator:
   serializedVersion: 5
@@ -486,6 +472,8 @@ MonoBehaviour:
   currentRoom: {fileID: 0}
   loadedRooms: []
   isLoadingRoom: 0
+  spawnedBossRoom: 0
+  updatedRooms: 0
 --- !u!114 &1951733189
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class ItemSpawner : MonoBehaviour
 {
     public GameObject[] itemsToSpawn;
     private bool itemSpawned = false;
+
     void Start()
     {
         foreach (GameObject item in itemsToSpawn)
@@ -14,7 +15,7 @@ public class ItemSpawner : MonoBehaviour
             {
                 if (Random.value <= item.GetComponent<Item>().spawnChance)
                 {
-                    Instantiate(item, transform.position, Quaternion.identity);
+                    GameObject spawnedItem = Instantiate(item, transform.position, Quaternion.identity, transform);
                     itemSpawned = true;
                 }
             }

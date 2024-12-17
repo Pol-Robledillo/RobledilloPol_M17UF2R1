@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GridController : MonoBehaviour
 {
-    public Room room;
     [System.Serializable]
     public struct Grid
     {
         public int columns, rows;
         public float verticalOffset, horizontalOffset;
     }
+    public Room room;
     public Grid grid;
     public GameObject gridTile;
     public List<Vector2> availablePoints = new List<Vector2>();
@@ -34,6 +35,7 @@ public class GridController : MonoBehaviour
                 go.GetComponent<Transform>().position = new Vector2(x - (grid.columns - grid.verticalOffset), y - (grid.rows - grid.horizontalOffset));
                 go.name = "X: " + x + ", Y: " + y;
                 availablePoints.Add(go.transform.position);
+                go.SetActive(false);
             }
         }
 

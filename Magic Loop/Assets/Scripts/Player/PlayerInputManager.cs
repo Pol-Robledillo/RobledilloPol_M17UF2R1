@@ -58,4 +58,9 @@ public class PlayerInputManager : MonoBehaviour, Inputs.ICharacterActions
     {
         rb.velocity = direction * speed;
     }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
+    }
 }
