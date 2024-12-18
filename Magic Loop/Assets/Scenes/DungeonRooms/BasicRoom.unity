@@ -4513,7 +4513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grid: {fileID: 2000149950}
   spawnerData:
-  - name: Item
+  - name: Item Spawner
     spawnerData: {fileID: 11400000, guid: 69a664a0f88705144987db0087ad6922, type: 2}
   - name: Chaser
     spawnerData: {fileID: 11400000, guid: 493ffe7840fd28c4785853b270359532, type: 2}

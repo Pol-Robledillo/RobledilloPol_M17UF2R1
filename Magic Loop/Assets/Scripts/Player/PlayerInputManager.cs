@@ -1,20 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerInputManager : MonoBehaviour, Inputs.ICharacterActions
 {
     public float speed;
+    public Weapon[] weapons;
+    private Weapon currentWeapon; 
     private Inputs inputs;
     private Vector2 direction;
     private Rigidbody2D rb;
     private Animator anim;
+    private Shooter shooter;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        shooter = GetComponent<Shooter>();
         inputs = new Inputs();
         inputs.Character.SetCallbacks(this);
     }
@@ -61,6 +66,15 @@ public class PlayerInputManager : MonoBehaviour, Inputs.ICharacterActions
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        anim.SetTrigger("Attack");
+        switch (currentWeapon.weaponType)
+        {
+            case Weapon.WeaponTypes.Melee:
+                //MeleeAttack();
+                break;
+            case Weapon.WeaponTypes.Sniper:
+                shooter.Shoot(currentWeapon.projectile, Vector2.zero, currentWeapon.projectileSpeed);
+                break;
+        }
     }
 }
