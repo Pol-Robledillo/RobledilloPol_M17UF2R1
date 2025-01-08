@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7271fd68910266a4382f0caeccbc96ff, type: 3}
-  m_Name: MagicMissile
+  m_Script: {fileID: 11500000, guid: 8d97936eff2390b4f8d763aa6f20246a, type: 3}
+  m_Name: ShooterSpawner
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  projectile: {fileID: 7710161346364129979, guid: 53badcc229639d5438b6cda37eea9304, type: 3}
-  cooldown: 1
-  damage: 25
-  projectileSpeed: 5
+  whatToSpawn: {fileID: 287889623645637641, guid: 66d720d9d57c33a4b85d278d6796efa4, type: 3}
+  maxGenerations: 2
+  minGenerations: 0

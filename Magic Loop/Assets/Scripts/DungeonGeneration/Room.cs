@@ -147,6 +147,35 @@ public class Room : MonoBehaviour
         if (collision.tag == "Player")
         {
             RoomController.instance.OnPlayerEnterRoom(this);
+            Chaser[] enemies = GetComponentsInChildren<Chaser>();
+            Shooter[] shooters = GetComponentsInChildren<Shooter>();
+            foreach (Chaser c in enemies)
+            {
+                c.player = collision.gameObject;
+                c.currentState = States.Chase;
+            }
+            foreach (Shooter s in shooters)
+            {
+                s.player = collision.gameObject;
+                s.currentState = States.Attack;
+            }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            RoomController.instance.OnPlayerEnterRoom(this);
+            Chaser[] enemies = GetComponentsInChildren<Chaser>();
+            Shooter[] shooters = GetComponentsInChildren<Shooter>();
+            foreach (Chaser c in enemies)
+            {
+                c.currentState = States.Idle;
+            }
+            foreach (Shooter s in shooters)
+            {
+                s.currentState = States.Idle;
+            }
         }
     }
 }

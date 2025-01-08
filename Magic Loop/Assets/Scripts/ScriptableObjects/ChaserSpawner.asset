@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatToSpawn: {fileID: 287889623645637641, guid: d6e13c7a44f04f44eb50d140c1330a4f, type: 3}
   maxGenerations: 2
-  minGenerations: 4
+  minGenerations: 1

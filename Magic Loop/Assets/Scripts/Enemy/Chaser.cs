@@ -12,20 +12,13 @@ public class Chaser : Enemy
         rb.velocity = Vector2.zero;
         GetComponent<CircleCollider2D>().enabled = true;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.GetComponent<PlayerManager>().TakeDamage(damage);
-        }
-    }
     public override void Idle()
     {
-        currentState = States.Chase;
+        rb.velocity = Vector2.zero;
     }
     public override void Chase()
     {
-        rb.velocity = (player.transform.position - transform.position).normalized * speed;
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -35,6 +28,16 @@ public class Chaser : Enemy
             {
                 currentState = States.Attack;
             }
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Vector2 direction = collision.gameObject.transform.position - transform.position;
+            direction.Normalize();
+            collision.GetComponent<PlayerManager>().TakeDamage(damage, direction);
+            Die();
         }
     }
 }

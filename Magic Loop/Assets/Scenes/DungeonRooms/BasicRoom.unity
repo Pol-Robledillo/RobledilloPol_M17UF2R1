@@ -4517,6 +4517,8 @@ MonoBehaviour:
     spawnerData: {fileID: 11400000, guid: 69a664a0f88705144987db0087ad6922, type: 2}
   - name: Chaser
     spawnerData: {fileID: 11400000, guid: 493ffe7840fd28c4785853b270359532, type: 2}
+  - name: Shooter
+    spawnerData: {fileID: 11400000, guid: 8d4b40cdda06ec741b787f02774bb7b1, type: 2}
 --- !u!1 &1431050880
 GameObject:
   m_ObjectHideFlags: 0

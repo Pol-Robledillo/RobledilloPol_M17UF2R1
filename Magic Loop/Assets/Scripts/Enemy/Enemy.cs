@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum States
 {
+    None,
     Attack,
     Idle,
     Chase,
@@ -13,14 +14,20 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     public GameObject player;
     public int health;
     public int damage;
-    public States currentState;
+    public States currentState = States.None;
     public Rigidbody2D rb;
     public Animator anim;
-
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+    }
     void Update()
     {
         switch (currentState)
         {
+            case States.None:
+                break;
             case States.Attack:
                 Attack();
                 break;
@@ -54,8 +61,9 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         return true;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Vector2 direction)
     {
+        rb.AddForce(direction * 1, ForceMode2D.Force);
         health -= damage;
         DamageAnimation();
         CheckIfAlive();
@@ -64,6 +72,11 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     public void DamageAnimation()
     {
         GetComponent<SpriteRenderer>().color = Color.red;
-        Invoke("ResetColor", 0.1f);
+        StartCoroutine(ResetColor());
+    }
+    private IEnumerator ResetColor()
+    {
+        yield return new WaitForSeconds(0.1f);
+        GetComponent<SpriteRenderer>().color = Color.black;
     }
 }

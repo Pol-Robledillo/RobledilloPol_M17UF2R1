@@ -10,7 +10,7 @@ public class MagicMissile : Weapon
         Vector2 mouseDirection = mousePos - characterPos;
         mouseDirection.Normalize();
         Quaternion rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg);
-
+        Debug.Log(mouseDirection);
         if (projectiles.Count > 0)
         {
             Pop(characterPos, mouseDirection, rotation, projectileSpeed);

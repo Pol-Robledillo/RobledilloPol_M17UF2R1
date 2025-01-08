@@ -14,4 +14,20 @@ public class Item : MonoBehaviour
     }
     public float spawnChance;
     public ItemType itemType;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            switch (itemType)
+            {
+                case ItemType.HealthPotion:
+                    collision.gameObject.GetComponent<PlayerManager>().health += 50;
+                    break;
+                case ItemType.Coin:
+                    collision.gameObject.GetComponent<PlayerManager>().coins++;
+                    break;
+            }
+            Destroy(gameObject);
+        }
+    }
 }

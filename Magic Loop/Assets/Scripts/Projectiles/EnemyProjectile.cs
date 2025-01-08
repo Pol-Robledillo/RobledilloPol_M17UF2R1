@@ -24,7 +24,9 @@ public class EnemyProjectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerManager>().TakeDamage(shooter.damage);
+            Vector2 direction = collision.gameObject.transform.position - transform.position;
+            direction.Normalize();
+            collision.gameObject.GetComponent<PlayerManager>().TakeDamage(shooter.damage, direction);
             shooter.Push(gameObject);
         }
     }
