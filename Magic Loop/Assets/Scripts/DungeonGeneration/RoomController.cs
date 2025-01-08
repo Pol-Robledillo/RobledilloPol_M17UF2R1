@@ -117,7 +117,6 @@ public class RoomController : MonoBehaviour
     {
         foreach(Room room in loadedRooms)
         {
-            Debug.Log("Removing doors");
             room.RemoveUnconnectedDoors();
         }
     }

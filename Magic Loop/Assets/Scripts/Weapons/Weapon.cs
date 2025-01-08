@@ -1,18 +1,13 @@
 using UnityEngine;
-[CreateAssetMenu(fileName = "Weapon.asset", menuName = "Weapons/Weapon")]
+using UnityEngine.UI;
 
-public class Weapon : ScriptableObject
+public abstract class Weapon : ScriptableObject
 {
-    public enum WeaponTypes
-    {
-        Melee,
-        Sniper,
-        Thunder,
-        Flamethrower
-    }
+    public Image icon;
     public GameObject projectile;
     public float cooldown;
-    public float damage;
+    public int damage;
     public float projectileSpeed;
-    public WeaponTypes weaponType;
+
+    public virtual void Shoot(Vector2 mousePos, Vector2 characterPos) { }
 }

@@ -1,0 +1,36 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.Properties;
+using UnityEngine;
+
+public class Projectile : MonoBehaviour
+{
+    private Rigidbody2D rb;
+    public float speed;
+    public MagicMissile shooter;
+    public Vector2 direction;
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+    private void Start()
+    {
+        rb.velocity = direction * speed;
+    }
+    private void OnEnable()
+    {
+        rb.velocity = direction * speed;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(shooter.damage);
+            shooter.Push(gameObject);
+        }
+    }
+    private void OnBecameInvisible()
+    {
+        shooter.Push(gameObject);
+    }
+}

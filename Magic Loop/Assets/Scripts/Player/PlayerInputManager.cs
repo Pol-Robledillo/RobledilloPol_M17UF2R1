@@ -6,22 +6,32 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputManager : MonoBehaviour, Inputs.ICharacterActions
 {
+    private bool canAttack = true;
     public float speed;
     public Weapon[] weapons;
     private Weapon currentWeapon; 
     private Inputs inputs;
     private Vector2 direction;
     private Rigidbody2D rb;
-    private Animator anim;
-    private Shooter shooter;
+    public Animator anim;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        shooter = GetComponent<Shooter>();
         inputs = new Inputs();
         inputs.Character.SetCallbacks(this);
+    }
+    private void Start()
+    {
+        if (weapons.Length > 0 && weapons != null)
+        {
+            currentWeapon = weapons[0];
+        }
+        else
+        {
+            Debug.Log("No weapons found");
+        }
     }
     private void Update()
     {
@@ -66,15 +76,28 @@ public class PlayerInputManager : MonoBehaviour, Inputs.ICharacterActions
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        anim.SetTrigger("Attack");
-        switch (currentWeapon.weaponType)
+        if (canAttack)
         {
-            case Weapon.WeaponTypes.Melee:
-                //MeleeAttack();
-                break;
-            case Weapon.WeaponTypes.Sniper:
-                shooter.Shoot(currentWeapon.projectile, Vector2.zero, currentWeapon.projectileSpeed);
-                break;
+            Vector2 characterPos = transform.position;
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
+            Vector2 mouseDirection = mousePos - characterPos;
+            mouseDirection.Normalize();
+            Debug.Log(mouseDirection);
+
+            anim.SetFloat("x", mouseDirection.x);
+            anim.SetFloat("y", mouseDirection.y);
+            anim.SetTrigger("Attack");
+
+            currentWeapon.Shoot(mousePos, characterPos);
+            StartCoroutine(AttackCooldown(currentWeapon.cooldown));
         }
+    }
+    private IEnumerator AttackCooldown(float cooldown)
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(cooldown);
+        canAttack = true;
+        StopCoroutine(AttackCooldown(cooldown));
     }
 }
