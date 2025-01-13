@@ -44,6 +44,42 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeToWeapon1"",
+                    ""type"": ""Button"",
+                    ""id"": ""a665e636-ad62-4f0a-9ae2-f440e7d156c3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeToWeapon2"",
+                    ""type"": ""Button"",
+                    ""id"": ""a9f871c9-90f5-4d3a-8f15-e10dc74aefd4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeToWeapon3"",
+                    ""type"": ""Button"",
+                    ""id"": ""970b06a8-83d5-4ede-8ef6-5d0da7a26532"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeToWeapon4"",
+                    ""type"": ""Button"",
+                    ""id"": ""de382eb6-de3c-48a1-9b2f-aff295b77dd5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -167,6 +203,50 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb868906-fc1e-4b5a-aaf9-bdfe9009b915"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeToWeapon1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d7cb47e-99f3-4407-b328-3b4896b50e18"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeToWeapon2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3072cd67-8f41-48d9-90b4-07d72dbe65cd"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeToWeapon3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff194d48-63d8-45b1-8ca1-7cb80d0445a5"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeToWeapon4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -177,6 +257,10 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         m_Character = asset.FindActionMap("Character", throwIfNotFound: true);
         m_Character_Movement = m_Character.FindAction("Movement", throwIfNotFound: true);
         m_Character_Attack = m_Character.FindAction("Attack", throwIfNotFound: true);
+        m_Character_ChangeToWeapon1 = m_Character.FindAction("ChangeToWeapon1", throwIfNotFound: true);
+        m_Character_ChangeToWeapon2 = m_Character.FindAction("ChangeToWeapon2", throwIfNotFound: true);
+        m_Character_ChangeToWeapon3 = m_Character.FindAction("ChangeToWeapon3", throwIfNotFound: true);
+        m_Character_ChangeToWeapon4 = m_Character.FindAction("ChangeToWeapon4", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -240,12 +324,20 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
     private List<ICharacterActions> m_CharacterActionsCallbackInterfaces = new List<ICharacterActions>();
     private readonly InputAction m_Character_Movement;
     private readonly InputAction m_Character_Attack;
+    private readonly InputAction m_Character_ChangeToWeapon1;
+    private readonly InputAction m_Character_ChangeToWeapon2;
+    private readonly InputAction m_Character_ChangeToWeapon3;
+    private readonly InputAction m_Character_ChangeToWeapon4;
     public struct CharacterActions
     {
         private @Inputs m_Wrapper;
         public CharacterActions(@Inputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Character_Movement;
         public InputAction @Attack => m_Wrapper.m_Character_Attack;
+        public InputAction @ChangeToWeapon1 => m_Wrapper.m_Character_ChangeToWeapon1;
+        public InputAction @ChangeToWeapon2 => m_Wrapper.m_Character_ChangeToWeapon2;
+        public InputAction @ChangeToWeapon3 => m_Wrapper.m_Character_ChangeToWeapon3;
+        public InputAction @ChangeToWeapon4 => m_Wrapper.m_Character_ChangeToWeapon4;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -261,6 +353,18 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
+            @ChangeToWeapon1.started += instance.OnChangeToWeapon1;
+            @ChangeToWeapon1.performed += instance.OnChangeToWeapon1;
+            @ChangeToWeapon1.canceled += instance.OnChangeToWeapon1;
+            @ChangeToWeapon2.started += instance.OnChangeToWeapon2;
+            @ChangeToWeapon2.performed += instance.OnChangeToWeapon2;
+            @ChangeToWeapon2.canceled += instance.OnChangeToWeapon2;
+            @ChangeToWeapon3.started += instance.OnChangeToWeapon3;
+            @ChangeToWeapon3.performed += instance.OnChangeToWeapon3;
+            @ChangeToWeapon3.canceled += instance.OnChangeToWeapon3;
+            @ChangeToWeapon4.started += instance.OnChangeToWeapon4;
+            @ChangeToWeapon4.performed += instance.OnChangeToWeapon4;
+            @ChangeToWeapon4.canceled += instance.OnChangeToWeapon4;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -271,6 +375,18 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
+            @ChangeToWeapon1.started -= instance.OnChangeToWeapon1;
+            @ChangeToWeapon1.performed -= instance.OnChangeToWeapon1;
+            @ChangeToWeapon1.canceled -= instance.OnChangeToWeapon1;
+            @ChangeToWeapon2.started -= instance.OnChangeToWeapon2;
+            @ChangeToWeapon2.performed -= instance.OnChangeToWeapon2;
+            @ChangeToWeapon2.canceled -= instance.OnChangeToWeapon2;
+            @ChangeToWeapon3.started -= instance.OnChangeToWeapon3;
+            @ChangeToWeapon3.performed -= instance.OnChangeToWeapon3;
+            @ChangeToWeapon3.canceled -= instance.OnChangeToWeapon3;
+            @ChangeToWeapon4.started -= instance.OnChangeToWeapon4;
+            @ChangeToWeapon4.performed -= instance.OnChangeToWeapon4;
+            @ChangeToWeapon4.canceled -= instance.OnChangeToWeapon4;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -292,5 +408,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnChangeToWeapon1(InputAction.CallbackContext context);
+        void OnChangeToWeapon2(InputAction.CallbackContext context);
+        void OnChangeToWeapon3(InputAction.CallbackContext context);
+        void OnChangeToWeapon4(InputAction.CallbackContext context);
     }
 }

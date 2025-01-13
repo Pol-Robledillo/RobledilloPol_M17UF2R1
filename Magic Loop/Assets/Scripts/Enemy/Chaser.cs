@@ -11,6 +11,7 @@ public class Chaser : Enemy
     {
         rb.velocity = Vector2.zero;
         GetComponent<CircleCollider2D>().enabled = true;
+        anim.SetTrigger("BlowUp");
     }
     public override void Idle()
     {

@@ -21,10 +21,10 @@ public class Item : MonoBehaviour
             switch (itemType)
             {
                 case ItemType.HealthPotion:
-                    collision.gameObject.GetComponent<PlayerManager>().health += 50;
+                    collision.gameObject.GetComponent<PlayerManager>().Heal(25);
                     break;
                 case ItemType.Coin:
-                    collision.gameObject.GetComponent<PlayerManager>().coins++;
+                    collision.gameObject.GetComponent<PlayerManager>().AddCoins(1);
                     break;
             }
             Destroy(gameObject);

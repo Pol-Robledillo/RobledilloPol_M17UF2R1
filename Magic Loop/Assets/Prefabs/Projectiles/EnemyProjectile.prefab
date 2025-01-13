@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4155265501243060959}
   - component: {fileID: 8447223384020104068}
   - component: {fileID: -8380807868787488313}
+  - component: {fileID: 5943328575024610215}
   m_Layer: 8
   m_Name: EnemyProjectile
   m_TagString: Untagged
@@ -75,8 +76,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 1644956669, guid: 029b6ad51128e354e9e9db8de55f0083, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -148,7 +149,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.25
 --- !u!114 &-8380807868787488313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,3 +165,24 @@ MonoBehaviour:
   speed: 0
   shooter: {fileID: -3343451104375050291, guid: 66d720d9d57c33a4b85d278d6796efa4, type: 3}
   direction: {x: 0, y: 0}
+--- !u!95 &5943328575024610215
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4383830234691206496}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 33c7d4bba4dfe8c4b847e9c241d1e820, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

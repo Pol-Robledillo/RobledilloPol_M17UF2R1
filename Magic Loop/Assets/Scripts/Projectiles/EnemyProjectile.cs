@@ -5,12 +5,16 @@ using UnityEngine;
 public class EnemyProjectile : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
+    private Animator anim;
     public float speed;
     public Shooter shooter;
     public Vector2 direction;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
     void Start()
     {
@@ -24,6 +28,7 @@ public class EnemyProjectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            anim.SetTrigger("BlowUp");
             Vector2 direction = collision.gameObject.transform.position - transform.position;
             direction.Normalize();
             collision.gameObject.GetComponent<PlayerManager>().TakeDamage(shooter.damage, direction);
@@ -33,5 +38,17 @@ public class EnemyProjectile : MonoBehaviour
     private void OnBecameInvisible()
     {
         shooter.Push(gameObject);
+    }
+    private void Update()
+    {
+        if (direction.x < 0)
+        {
+            sr.flipX = true;
+        }
+        else
+        {
+            sr.flipX = false;
+        }
+        transform.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, direction));
     }
 }

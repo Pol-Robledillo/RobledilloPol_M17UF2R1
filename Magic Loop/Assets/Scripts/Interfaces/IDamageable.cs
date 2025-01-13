@@ -6,4 +6,5 @@ public interface IDamageable
 {
     void TakeDamage(int damage, Vector2 direction);
     void DamageAnimation();
+    void UpdateHealthbar();
 }

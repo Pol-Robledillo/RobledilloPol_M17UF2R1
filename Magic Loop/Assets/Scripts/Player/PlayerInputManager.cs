@@ -1,20 +1,21 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerInputManager : MonoBehaviour, Inputs.ICharacterActions
 {
+    public Sprite selectedSpell, unselectedSpell;
+    public Image[] spellSlots;
     private bool canAttack = true;
     public float speed;
     public Weapon[] weapons;
-    private Weapon currentWeapon; 
+    private Weapon currentWeapon;
     private Inputs inputs;
     private Vector2 direction;
     private Rigidbody2D rb;
     public Animator anim;
-
+    public int startWeapon = 0;
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -26,11 +27,8 @@ public class PlayerInputManager : MonoBehaviour, Inputs.ICharacterActions
     {
         if (weapons.Length > 0 && weapons != null)
         {
-            currentWeapon = weapons[0];
-        }
-        else
-        {
-            Debug.Log("No weapons found");
+            currentWeapon = weapons[startWeapon];
+            weapons[startWeapon].isUnlocked = true;
         }
     }
     private void Update()
@@ -99,5 +97,33 @@ public class PlayerInputManager : MonoBehaviour, Inputs.ICharacterActions
         yield return new WaitForSeconds(cooldown);
         canAttack = true;
         StopCoroutine(AttackCooldown(cooldown));
+    }
+    public void OnChangeToWeapon1(InputAction.CallbackContext context)
+    {
+        ChangeWeapon(0);
+    }
+    public void OnChangeToWeapon2(InputAction.CallbackContext context)
+    {
+        ChangeWeapon(1);
+    }
+    public void OnChangeToWeapon3(InputAction.CallbackContext context)
+    {
+        ChangeWeapon(2);
+    }
+    public void OnChangeToWeapon4(InputAction.CallbackContext context)
+    {
+        ChangeWeapon(3);
+    }
+    public void ChangeWeapon(int slot)
+    {
+        if (weapons[slot].isUnlocked)
+        {
+            currentWeapon = weapons[slot];
+            foreach (Image spellSlot in spellSlots)
+            {
+                spellSlot.sprite = unselectedSpell;
+            }
+            spellSlots[slot].sprite = selectedSpell;
+        }
     }
 }
