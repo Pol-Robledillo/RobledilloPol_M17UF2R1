@@ -28,14 +28,18 @@ public class EnemyProjectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            rb.velocity = Vector2.zero;
             anim.SetTrigger("BlowUp");
             Vector2 direction = collision.gameObject.transform.position - transform.position;
             direction.Normalize();
             collision.gameObject.GetComponent<PlayerManager>().TakeDamage(shooter.damage, direction);
-            shooter.Push(gameObject);
         }
     }
     private void OnBecameInvisible()
+    {
+        ReturnToShooter();
+    }
+    private void ReturnToShooter()
     {
         shooter.Push(gameObject);
     }
@@ -49,6 +53,5 @@ public class EnemyProjectile : MonoBehaviour
         {
             sr.flipX = false;
         }
-        transform.rotation = Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, direction));
     }
 }

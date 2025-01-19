@@ -80,6 +80,15 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PauseGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""b153536c-c8db-4d13-8f9d-75cb87c1f4b5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -247,6 +256,17 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""action"": ""ChangeToWeapon4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc39ef15-669f-4757-858e-086a766b3add"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -261,6 +281,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         m_Character_ChangeToWeapon2 = m_Character.FindAction("ChangeToWeapon2", throwIfNotFound: true);
         m_Character_ChangeToWeapon3 = m_Character.FindAction("ChangeToWeapon3", throwIfNotFound: true);
         m_Character_ChangeToWeapon4 = m_Character.FindAction("ChangeToWeapon4", throwIfNotFound: true);
+        m_Character_PauseGame = m_Character.FindAction("PauseGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -328,6 +349,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_ChangeToWeapon2;
     private readonly InputAction m_Character_ChangeToWeapon3;
     private readonly InputAction m_Character_ChangeToWeapon4;
+    private readonly InputAction m_Character_PauseGame;
     public struct CharacterActions
     {
         private @Inputs m_Wrapper;
@@ -338,6 +360,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         public InputAction @ChangeToWeapon2 => m_Wrapper.m_Character_ChangeToWeapon2;
         public InputAction @ChangeToWeapon3 => m_Wrapper.m_Character_ChangeToWeapon3;
         public InputAction @ChangeToWeapon4 => m_Wrapper.m_Character_ChangeToWeapon4;
+        public InputAction @PauseGame => m_Wrapper.m_Character_PauseGame;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -365,6 +388,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @ChangeToWeapon4.started += instance.OnChangeToWeapon4;
             @ChangeToWeapon4.performed += instance.OnChangeToWeapon4;
             @ChangeToWeapon4.canceled += instance.OnChangeToWeapon4;
+            @PauseGame.started += instance.OnPauseGame;
+            @PauseGame.performed += instance.OnPauseGame;
+            @PauseGame.canceled += instance.OnPauseGame;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -387,6 +413,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @ChangeToWeapon4.started -= instance.OnChangeToWeapon4;
             @ChangeToWeapon4.performed -= instance.OnChangeToWeapon4;
             @ChangeToWeapon4.canceled -= instance.OnChangeToWeapon4;
+            @PauseGame.started -= instance.OnPauseGame;
+            @PauseGame.performed -= instance.OnPauseGame;
+            @PauseGame.canceled -= instance.OnPauseGame;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -412,5 +441,6 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         void OnChangeToWeapon2(InputAction.CallbackContext context);
         void OnChangeToWeapon3(InputAction.CallbackContext context);
         void OnChangeToWeapon4(InputAction.CallbackContext context);
+        void OnPauseGame(InputAction.CallbackContext context);
     }
 }

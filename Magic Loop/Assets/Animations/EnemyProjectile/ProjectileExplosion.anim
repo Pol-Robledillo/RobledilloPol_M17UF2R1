@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Explosion
+  m_Name: ProjectileExplosion
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -95,7 +95,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.4
-    functionName: Die
+    functionName: ReturnToShooter
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

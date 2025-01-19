@@ -17,7 +17,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         UpdateHealthbar();
         if (health <= 0)
         {
-            //GameManager.instance.GameOver();
+            GameManager.instance.GameOver();
         }
     }
     public void DamageAnimation()

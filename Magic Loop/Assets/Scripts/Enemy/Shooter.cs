@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -32,7 +33,8 @@ public class Shooter : Enemy
         canShoot = false;
         yield return new WaitForSeconds(attackSpeed);
         anim.SetTrigger("Throw");
-        Vector2 playerDirection = player.transform.position - transform.position;
+        Vector2 playerPosition = new Vector2(player.transform.position.x, player.transform.position.y - 0.5f);
+        Vector2 playerDirection = playerPosition - new Vector2(transform.position.x, transform.position.y);
         playerDirection.Normalize();
 
         if (stack.Count > 0)

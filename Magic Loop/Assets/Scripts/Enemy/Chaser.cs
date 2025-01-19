@@ -38,7 +38,6 @@ public class Chaser : Enemy
             Vector2 direction = collision.gameObject.transform.position - transform.position;
             direction.Normalize();
             collision.GetComponent<PlayerManager>().TakeDamage(damage, direction);
-            Die();
         }
     }
 }

@@ -64,7 +64,14 @@ public class PlayerInputManager : MonoBehaviour, Inputs.ICharacterActions
 
     public void OnMovement(InputAction.CallbackContext context)
     {
-        direction = context.ReadValue<Vector2>();
+        if (!GameManager.instance.gameOver)
+        {
+            direction = context.ReadValue<Vector2>();
+        }
+        else
+        {
+            direction = Vector2.zero;
+        }
     }
 
     private void Move()
@@ -74,21 +81,23 @@ public class PlayerInputManager : MonoBehaviour, Inputs.ICharacterActions
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (canAttack)
+        if (!GameManager.instance.gameOver)
         {
-            Vector2 characterPos = transform.position;
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            if (canAttack)
+            {
+                Vector2 characterPos = transform.position;
+                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
-            Vector2 mouseDirection = mousePos - characterPos;
-            mouseDirection.Normalize();
-            Debug.Log(mouseDirection);
+                Vector2 mouseDirection = mousePos - characterPos;
+                mouseDirection.Normalize();
 
-            anim.SetFloat("x", mouseDirection.x);
-            anim.SetFloat("y", mouseDirection.y);
-            anim.SetTrigger("Attack");
+                anim.SetFloat("x", mouseDirection.x);
+                anim.SetFloat("y", mouseDirection.y);
+                anim.SetTrigger("Attack");
 
-            currentWeapon.Shoot(mousePos, characterPos);
-            StartCoroutine(AttackCooldown(currentWeapon.cooldown));
+                currentWeapon.Shoot(mousePos, characterPos);
+                StartCoroutine(AttackCooldown(currentWeapon.cooldown));
+            }
         }
     }
     private IEnumerator AttackCooldown(float cooldown)
@@ -125,5 +134,9 @@ public class PlayerInputManager : MonoBehaviour, Inputs.ICharacterActions
             }
             spellSlots[slot].sprite = selectedSpell;
         }
+    }
+    public void OnPauseGame(InputAction.CallbackContext context)
+    {
+        GameManager.instance.TogglePause();
     }
 }
