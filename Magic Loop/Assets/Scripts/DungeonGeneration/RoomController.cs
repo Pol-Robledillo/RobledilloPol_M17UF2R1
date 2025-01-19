@@ -119,6 +119,7 @@ public class RoomController : MonoBehaviour
         {
             room.RemoveUnconnectedDoors();
         }
+        GameManager.instance.PrepareEndGame();
     }
     public bool DoesRoomExist(int x, int y)
     {

@@ -17,6 +17,8 @@ public class PlayerManager : MonoBehaviour, IDamageable
         UpdateHealthbar();
         if (health <= 0)
         {
+            GetComponent<BoxCollider2D>().enabled = false;
+            GameManager.instance.gameOver = true;
             GameManager.instance.GameOver();
         }
     }

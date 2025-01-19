@@ -6,8 +6,9 @@ public class MagicMissile : Weapon
 {
     public float projectileSpeed;
     private Stack<GameObject> projectiles = new Stack<GameObject>();
-    public override void Shoot(Vector2 mousePos, Vector2 characterPos)
+    public override void Shoot(Vector2 mousePos, PlayerInputManager character)
     {
+        Vector2 characterPos = character.transform.position;
         Vector2 mouseDirection = mousePos - characterPos;
         mouseDirection.Normalize();
         Quaternion rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg);

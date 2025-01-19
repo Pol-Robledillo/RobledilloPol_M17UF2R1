@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7271fd68910266a4382f0caeccbc96ff, type: 3}
   m_Name: MagicMissile
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 99660346e8f974944932d1d6d8bddfc3, type: 3}
+  isUnlocked: 1
   projectile: {fileID: 7710161346364129979, guid: 53badcc229639d5438b6cda37eea9304, type: 3}
   cooldown: 0.75
   damage: 25

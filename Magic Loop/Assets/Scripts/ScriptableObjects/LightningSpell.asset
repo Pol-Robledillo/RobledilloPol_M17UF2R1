@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9816413ac277164aaa953353c718ed9, type: 3}
   m_Name: LightningSpell
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  isUnlocked: 1
   projectile: {fileID: 6558780902891424780, guid: b17e08288d9987e4da7ed6e901a2479e, type: 3}
   cooldown: 1.5
-  damage: 100
-  projectileSpeed: 0
+  damage: 50

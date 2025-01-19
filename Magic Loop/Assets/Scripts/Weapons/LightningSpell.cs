@@ -5,8 +5,9 @@ using UnityEngine;
 public class LightningSpell : Weapon
 {
     private Stack<GameObject> projectiles = new Stack<GameObject>();
-    public override void Shoot(Vector2 mousePos, Vector2 characterPos)
+    public override void Shoot(Vector2 mousePos, PlayerInputManager characterPos)
     {
+        mousePos = new Vector2(mousePos.x, mousePos.y + 2);
         if (projectiles.Count > 0)
         {
             Pop(mousePos);

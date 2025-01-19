@@ -64,6 +64,11 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     public abstract void Chase();
     public void Die()
     {
+        GameManager.instance.enemiesInFloor--;
+        if (GameManager.instance.enemiesInFloor <= 0)
+        {
+            GameManager.instance.EndAvailable();
+        }
         Destroy(gameObject);
     }
 
@@ -78,11 +83,32 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     }
     public void TakeDamage(int damage, Vector2 direction)
     {
-        rb.AddForce(direction * 2, ForceMode2D.Force);
+        StartCoroutine(Knockback(direction));
         health -= damage;
         UpdateHealthbar();
         DamageAnimation();
         CheckIfAlive();
+    }
+    public void StartDOT(int damage)
+    {
+        StartCoroutine(DOT(damage));
+    }
+    public void StopDOT()
+    {
+        StopCoroutine(DOT(0));
+    }
+    public IEnumerator DOT(int damage)
+    {
+        TakeDamage(damage, Vector2.zero);
+        yield return new WaitForSeconds(0.1f);
+        StartCoroutine(DOT(damage));
+    }
+    public IEnumerator Knockback(Vector2 direction)
+    {
+        direction.Normalize();
+        rb.AddForce(direction * 7.5f, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.3f);
+        rb.velocity = Vector2.zero;
     }
     public void UpdateHealthbar()
     {

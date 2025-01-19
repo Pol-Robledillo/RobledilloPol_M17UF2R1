@@ -14,7 +14,7 @@ public class Background : MonoBehaviour
     }
     private void Update()
     {
-        if (transform.localPosition.x <= -17)
+        if (transform.localPosition.x <= -16)
         {
             transform.localPosition = new Vector2(17, 0);
         }

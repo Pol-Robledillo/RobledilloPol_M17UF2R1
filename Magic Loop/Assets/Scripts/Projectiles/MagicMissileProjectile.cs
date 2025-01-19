@@ -25,8 +25,7 @@ public class MagicMissileProjectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            direction = collision.gameObject.transform.position - transform.position;
-            direction.Normalize();
+            direction = Vector2.zero;
             collision.gameObject.GetComponent<Enemy>().TakeDamage(shooter.damage, direction);
             shooter.Push(gameObject);
         }

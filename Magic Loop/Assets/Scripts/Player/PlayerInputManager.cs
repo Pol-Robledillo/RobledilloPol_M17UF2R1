@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerInputManager : MonoBehaviour, Inputs.ICharacterActions
 {
+    public AudioClip[] audioClips;
+    private AudioClip currentWeaponSound;
+    private AudioSource audioSource;
     public Sprite selectedSpell, unselectedSpell;
     public Image[] spellSlots;
     private bool canAttack = true;
@@ -20,6 +23,7 @@ public class PlayerInputManager : MonoBehaviour, Inputs.ICharacterActions
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
         inputs = new Inputs();
         inputs.Character.SetCallbacks(this);
     }
@@ -27,7 +31,12 @@ public class PlayerInputManager : MonoBehaviour, Inputs.ICharacterActions
     {
         if (weapons.Length > 0 && weapons != null)
         {
+            foreach (Weapon weapon in weapons)
+            {
+                weapon.isUnlocked = false;
+            }
             currentWeapon = weapons[startWeapon];
+            currentWeaponSound = audioClips[startWeapon];
             weapons[startWeapon].isUnlocked = true;
         }
     }
@@ -85,6 +94,11 @@ public class PlayerInputManager : MonoBehaviour, Inputs.ICharacterActions
         {
             if (canAttack)
             {
+                if (currentWeapon != weapons[3])
+                {
+                    audioSource.clip = currentWeaponSound;
+                    audioSource.Play();
+                }
                 Vector2 characterPos = transform.position;
                 Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
@@ -95,7 +109,7 @@ public class PlayerInputManager : MonoBehaviour, Inputs.ICharacterActions
                 anim.SetFloat("y", mouseDirection.y);
                 anim.SetTrigger("Attack");
 
-                currentWeapon.Shoot(mousePos, characterPos);
+                currentWeapon.Shoot(mousePos, this);
                 StartCoroutine(AttackCooldown(currentWeapon.cooldown));
             }
         }
@@ -127,6 +141,10 @@ public class PlayerInputManager : MonoBehaviour, Inputs.ICharacterActions
     {
         if (weapons[slot].isUnlocked)
         {
+            if (slot != 3)
+            {
+                currentWeaponSound = audioClips[slot];
+            }
             currentWeapon = weapons[slot];
             foreach (Image spellSlot in spellSlots)
             {

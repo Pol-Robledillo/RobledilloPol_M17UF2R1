@@ -15,10 +15,12 @@ public class Chaser : Enemy
     }
     public override void Idle()
     {
+        GetComponent<BoxCollider2D>().enabled = false;
         rb.velocity = Vector2.zero;
     }
     public override void Chase()
     {
+        GetComponent<BoxCollider2D>().enabled = true;
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
     }
     private void OnCollisionEnter2D(Collision2D collision)

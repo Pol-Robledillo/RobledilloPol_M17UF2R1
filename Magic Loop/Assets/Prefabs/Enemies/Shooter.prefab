@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -3343451104375050291}
   - component: {fileID: 6010629916262663438}
   - component: {fileID: 7794192368791252789}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Shooter
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 287889623645637641}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -177,7 +177,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.92, y: 1.92}
+    oldSize: {x: 2.7428572, y: 2.7428572}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -217,7 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3536897948989531627}
   - component: {fileID: 6391275395475259005}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: EnemyHP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +305,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7927010012934681328}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 4636116055627465035}
   - component: {fileID: 2062989236195302309}
   - component: {fileID: 4654240033660030118}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 4872851311396235771}
   - component: {fileID: 7353617020144196328}
   - component: {fileID: 5086562500733251325}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -520,7 +520,7 @@ GameObject:
   - component: {fileID: 262936568319998428}
   - component: {fileID: 3296614719387160196}
   - component: {fileID: 5506388666242231705}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,22 +12,18 @@ public class LightningProjectile : MonoBehaviour
         hitBox = GetComponent<CircleCollider2D>();
         anim = GetComponent<Animator>();
     }
-    private void Start()
-    {
-        anim.SetTrigger("Strike");
-        WaitForSeconds wait = new WaitForSeconds(0.3f);
-        hitBox.enabled = true;
-        WaitForSeconds wait2 = new WaitForSeconds(0.1f);
-        shooter.Push(gameObject);
-    }
     private void OnEnable()
     {
         anim.SetTrigger("Strike");
-        WaitForSeconds wait = new WaitForSeconds(0.3f);
+    }
+    public void EnableHitbox()
+    {
         hitBox.enabled = true;
-        WaitForSeconds wait2 = new WaitForSeconds(0.1f);
+    }
+    public void BackToShooter()
+    {
+        hitBox.enabled = false;
         shooter.Push(gameObject);
-
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
